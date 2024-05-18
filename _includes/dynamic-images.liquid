@@ -1,0 +1,46 @@
+{% comment %}
+  Copyright 2024 Richard Dominick
+{% endcomment %}
+{% capture newline %}
+{% endcapture %}
+{% assign starts = '|--;|:-' | split: ';' -%}
+{% if include.markdown %}
+  {% assign html = include.markdown | markdownify %}
+{% else %}
+  {% assign html = include.html %}
+{% endif %}
+{%- assign nodes = html
+  | strip
+  | split: '<pre><code class="language-'
+-%}
+{{ nodes.first }}
+{%- for node in nodes offset:1 -%}
+  {% assign tag = node | split: '">' | first %}
+  {%- if tag == 'img' -%}
+    {% assign contents = node
+      | replace_first: tag, ''
+      | replace_first: '">', ''
+      | strip
+      | split: '</code></pre>'
+    %}
+    {% assign image_paths = contents.first | split: '```' -%}
+    {% assign fallback_image = image_paths[0] -%}
+    <picture>
+    {%- for source_data in image_paths offset:1 -%}
+      {% assign parsed = source_data | split: newline -%}
+      {% assign color_scheme = parsed[0] %}
+      {% assign image_path = parsed[1] %}
+      <source
+        media="(prefers-color-scheme: {{ color_scheme }})"
+        srcset="{{ image_path }}"
+      >
+    {%- endfor -%}
+      <img src="{{ fallback_image }}" alt="{{ image_alt }}">
+    </picture>
+    {%- for tail in contents offset:1 -%}
+      {{ tail }}</code></pre>
+    {%- endfor -%}
+  {%-else -%}
+    <pre><code class="language-{{ node }}
+  {%- endif -%}
+{%- endfor -%}

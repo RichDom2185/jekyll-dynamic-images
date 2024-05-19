@@ -1,0 +1,11 @@
+title: Jekyll Dynamic Images
+remote_theme: RichDom2185/jekyll-blog-theme@dev-2023
+
+repository: RichDom2185/jekyll-dynamic-images
+markdown: kramdown
+
+description: A pure Liquid way to generate dynamic `<picture>` elements with light/dark mode.
+
+plugins:
+  - jemoji
+  - jekyll-remote-theme

@@ -1,0 +1,24 @@
+<!-- Effectively copied from 
+  https://github.com/RichDom2185/2023-website/blob/master/src/pages/index/FooterSection.tsx
+-->
+<div
+  class="BACKGROUND_DYNAMIC_COLOR text-neutral-400 dark:text-neutral-600 px-10 py-6 text-center h-[--footer-height]"
+>
+  <p class="select-none">
+    <!-- Hardcoding due to :root font size being overridden -->
+    <span class="w-full text-[14px]">
+      Copyright &copy; 2024 {{ site.author }}
+    </span>
+    <br />
+    <span>
+      <!-- Hardcoding due to :root font size being overridden -->
+      <span class="w-full text-[12px]">
+        Built with {% include external_link.html to="https://tailwindcss.com"
+        label="Tailwind" %} and {% include external_link.html
+        to="https://jekyllrb.com" label="Jekyll" %} . View the source code on {%
+        include external_link.html to=site.github.repository_url label="GitHub"
+        %} .
+      </span>
+    </span>
+  </p>
+</div>

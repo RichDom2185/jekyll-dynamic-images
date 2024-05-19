@@ -1,0 +1,277 @@
+# Adapted from
+# https://github.com/RichDom2185/jekyll-blog-theme/blob/dev-2023/_data/tailwind.yml
+- selector: .site-header
+  classes:
+    - BACKGROUND_DYNAMIC_COLOR
+    - TEXT_DYNAMIC_COLOR
+
+    - bg-opacity-70
+    - dark:bg-opacity-50
+
+    - backdrop-blur
+
+    - top-0
+    - z-50
+    - w-full
+    - h-[--header-height]
+
+    - flex
+    - gap-x-4
+    - items-center
+    - justify-center
+
+    - py-16
+    - px-5
+    - text-sm
+    - font-display
+
+    - TEXT_MEDIUM
+- selector: .site-header > *
+  classes:
+    - flex
+    - gap-x-4
+    - items-center
+- selector: .site-header + *
+  classes:
+    - pt-[--header-height]
+    - -mt-[--header-height]
+
+- selector: .site-root-link
+  classes:
+    - TEXT_BOLD
+    - "!text-4xl"
+    - mx-auto
+    - w-full
+
+    # Gradient background
+    # display font exceeds its boundaries
+    # resulting in render bug when
+    # background is clipped to text
+    # https://stackoverflow.com/questions/21297936/styling-a-font-exceeding-its-text-bounding-box
+    - RAINBOW_BACKGROUND
+    - font-sans
+    - DECORATION_DYNAMIC_COLOR
+    - bg-clip-text
+    - hover:text-transparent
+    - dark:hover:text-transparent
+    - bg-bottom
+
+    - hover:underline
+    - underline-offset-[16px]
+    - decoration-wavy
+
+    # Tooltip
+    - peer
+
+# Tooltip
+# Adapted from
+# https://github.com/RichDom2185/2023-website/blob/main/src/components/common/Tooltip.tsx
+- selector: .PEER_TOOLTIP
+  classes:
+    - peer-hover:motion-safe:animate-bounce-left
+
+    - select-none
+    - box-border
+    - py-2
+    - px-3
+    - bg-black
+    - rounded-[6px]
+    - text-white
+    # - text-xs
+    - not-italic
+    - text-center
+    # Tooltip positioning and alignment
+    - w-max
+    - absolute
+    - z-50
+    # Right side of the peer element
+    - top-1/2
+    - left-full
+    - -translate-y-[calc(50%)]
+    - ml-4
+    # Tooltip visibility
+    - invisible
+    - opacity-0
+    - transition-opacity
+    - duration-50
+    - peer-hover:opacity-100
+    - peer-hover:visible
+
+# Global styles
+- selector: article
+  classes:
+    - "!space-y-6"
+- selector: picture
+  classes:
+    - block
+
+- selector: .admonition
+  classes:
+    - shadow
+- selector: :not(pre) > code
+  classes:
+    - rounded
+    - px-1
+    - py-0.5
+    - font-mono
+    - bg-gray-100
+    - dark:bg-gray-800
+    - border
+    - BORDER_DYNAMIC_COLOR
+- selector: img.emoji
+  classes:
+    - inline
+- selector: blockquote
+  classes:
+    - space-y-4
+    - pl-4
+    - border-l-4
+    - border-dashed
+    - BORDER_DYNAMIC_COLOR
+
+# Table styles adapted to be dynamic from
+# https://github.com/RichDom2185/glam-mailer/blob/master/src/themes/default.yaml#L96-L115
+- selector: table
+  classes:
+    - table-auto
+    - w-full
+    - border-collapse
+    - rounded-md
+    - overflow-hidden
+    - font-sans
+- selector: thead
+  classes:
+    - bg-gray-100
+    - dark:bg-gray-800
+- selector: tbody > tr
+  classes:
+    - odd:bg-white
+    - dark:odd:bg-gray-800
+    - even:bg-gray-50
+    - dark:even:bg-gray-900
+- selector: th,td
+  classes:
+    - border
+    - BORDER_DYNAMIC_COLOR
+    - border-solid
+    - px-4
+    - py-2
+
+# Blog styles
+- selector: article *
+  classes:
+    - scroll-mt-[--header-height]
+- selector: article *:not(h1, h2, h3, h4, h5, h6)
+  classes:
+    - TEXT_NORMAL
+- selector: |
+    article h1,
+    article h2,
+    article h3,
+    article h4,
+    article h5,
+    article h6
+  classes:
+    - font-sans
+    - text-left
+- selector: |
+    article h1,
+    article h2,
+    article h3
+  classes:
+    - TEXT_MEDIUM
+    - relative
+    # - cursor-pointer
+    # - hover:underline
+    # - underline-offset-8
+    # - decoration-dashed
+- selector: |
+    article h4,
+    article h5,
+    article h6
+  classes:
+    - TEXT_BOLD
+- selector: article h1
+  classes:
+    - text-xl
+    - lg:text-2xl
+- selector: article h2
+  classes:
+    - text-lg
+    - lg:text-xl
+- selector: article h3
+  classes:
+    - text-lg
+- selector: article a
+  classes:
+    - hover:underline
+    - hover:decoration-dashed
+    - underline-offset-4
+    - LINK_DYNAMIC_NO_HOVER
+- selector: article img:not(.emoji)
+  classes:
+    - rounded
+    - mx-auto
+    - border
+    - BORDER_DYNAMIC_COLOR
+    - min-w-[30%]
+    - max-h-[40vh]
+    - object-contain
+
+# TODO: Investigate if needs changing
+- selector: article ol li
+  classes:
+    - list-decimal
+    - ml-5
+- selector: article ul li
+  classes:
+    - list-disc
+    - ml-5
+# END TODO
+
+- selector: .TEXT_DYNAMIC_SPACING
+  classes:
+    - tracking-normal
+    - dark:tracking-wide
+- selector: .BORDER_DYNAMIC_COLOR
+  classes:
+    - border-gray-300
+    - dark:border-gray-700
+- selector: .LINK_DYNAMIC_HOVER
+  classes:
+    - hover:text-blue-600
+    - dark:hover:text-blue-300
+- selector: .LINK_DYNAMIC_NO_HOVER
+  classes:
+    - text-blue-600
+    - dark:text-blue-300
+
+# The following are adapted from
+# https://github.com/RichDom2185/2023-website/blob/master/src/utils/styles.ts
+- selector: .BACKGROUND_DYNAMIC_COLOR
+  classes:
+    - bg-white
+    - dark:bg-zinc-900
+- selector: .TEXT_DYNAMIC_COLOR
+  classes:
+    - text-zinc-900
+    - dark:text-stone-300
+- selector: .DECORATION_DYNAMIC_COLOR
+  classes:
+    - decoration-zinc-900
+    - dark:decoration-stone-300
+- selector: .TEXT_STATIC_BLACK
+  classes:
+    - text-zinc-900
+- selector: .TEXT_BOLD
+  classes:
+    - font-bold
+    - dark:font-semibold
+- selector: .TEXT_NORMAL
+  classes:
+    - font-normal
+    - dark:font-light
+- selector: .TEXT_MEDIUM
+  classes:
+    - font-medium
+    - dark:font-normal

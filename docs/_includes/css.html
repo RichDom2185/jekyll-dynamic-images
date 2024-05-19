@@ -1,0 +1,83 @@
+<!-- Adapted from https://github.com/RichDom2185/jekyll-blog-theme/blob/dev-2023/_includes/css.html -->
+<style>
+  @import "https://spsarolkar.github.io/rouge-theme-preview/css/syntax-github.css"
+    only screen and (prefers-color-scheme: light);
+  @import "https://spsarolkar.github.io/rouge-theme-preview/css/syntax-base16.dark.css"
+    only screen and (prefers-color-scheme: dark);
+
+  :root {
+    --grey-outline: #bdbdbd;
+    --light-grey: #f5f5f5;
+    --link-color: #0066cc;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .favicon {
+    width: 32px;
+    border-radius: 50%;
+  }
+
+  .header-right {
+    list-style: none;
+    margin: 0;
+    font-size: 0.9em;
+    text-transform: uppercase;
+  }
+
+  .page-section {
+    display: flow-root;
+  }
+
+  /* Ideally, set the negative margin only to .profile-section */
+  .post {
+    /* offset = header height + header padding + header shadow */
+    min-height: calc(100vh - var(--header-height) - 1em - 2px);
+  }
+
+  /*
+  * Blog Styles
+  */
+
+  .highlight {
+    margin: 1em 0;
+    /* background-color: var(--light-grey); // overrides github theme */
+    border-radius: 0.3em;
+  }
+
+  article pre {
+    padding: 1em 1.5em;
+    overflow-x: auto;
+  }
+
+  .post > h1,
+  .post > * {
+    display: block;
+    margin-inline: auto;
+  }
+
+  .post-header img {
+    /* max-width: 25%;
+    border-radius: 0.3em; */
+    width: 80%;
+    display: block;
+    margin-inline: auto;
+    /* border-radius: 0.3em; */
+    aspect-ratio: 2.39;
+    object-fit: cover;
+  }
+</style>
+<script defer>
+  (() => {
+    const customTheme = tailwind.config.theme.extend;
+    tailwind.config.theme.extend = {
+      ...customTheme,
+      animation: {
+        ...customTheme.animation,
+        "bounce-left": "bounce-left 1s infinite",
+      },
+    };
+  })();
+</script>

@@ -1,0 +1,45 @@
+<!-- Adapted from https://github.com/RichDom2185/jekyll-blog-theme/blob/dev-2023/_layouts/default.html -->
+{% if site.enable_features.admonitions %}{% capture content %}{% include admonitions.liquid html=content %}{% endcapture %}{% endif %}
+{% if site.enable_features.fancy-tables %}{% capture content %}{% include fancy-tables.liquid html=content %}{% endcapture %}{% endif %}
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <meta charset="utf-8">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}">
+    {% include fonts.html %}
+    {% include tailwind.html %}
+    {% include css.html %}
+    {% if site.enable_features.search %}{% include search.html %}{% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <div class="BACKGROUND_DYNAMIC_COLOR TEXT_DYNAMIC_COLOR TEXT_DYNAMIC_SPACING font-sans">
+        {% include header.html %}
+        <!-- Inject View on GitHub button eagerly, don't wait -->
+        <!-- for content load so that Tailwind classes can be -->
+        <!-- populated. Guaranteed existence of element after -->
+        <!-- loading the header above due to script ordering. -->
+        <script>
+          (() => {
+            const node = document.querySelector(".site-root-link");
+            node.setAttribute("href", "{{ site.github.repository_url }}");
+            node.setAttribute("target", "_blank");
+            node.setAttribute("rel", "noopener noreferrer");
+            const span = document.createElement("span");
+            span.classList.add("PEER_TOOLTIP", "cursor-pointer");
+            span.innerText = "View on GitHub";
+            node.parentElement.classList.add("relative"); // Positioning fix
+            node.parentElement.appendChild(span);
+          })()
+        </script>
+        {{ content }}
+      </div>
+      {% include footer.html %}
+    </div>
+  </body>
+</html>
